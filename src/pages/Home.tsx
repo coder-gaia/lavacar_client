@@ -9,7 +9,7 @@ const Home = () => {
       <FormContainer>
         <Input type="text" placeholder='Seu email'/>
         <Input type="password" placeholder='Sua senha' />
-        <Button type='submit'>Login</Button>
+        <Link to="/booking"><Button type='submit'>Login</Button></Link>
       </FormContainer>
       <p>
         Não tem conta? <Link to="/register"><b>Registrar-se</b></Link>
