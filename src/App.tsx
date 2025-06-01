@@ -1,10 +1,19 @@
+import { styled } from 'styled-components';
 import './App.css'
+import AppRoutes from './routes'
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
 
 function App() {
   return (
-      <div>
-        <h1>Lava Car</h1>
-      </div> 
+      <Container>
+        <AppRoutes/>
+      </Container> 
   )
 }
 
