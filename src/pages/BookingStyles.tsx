@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const BookingWrapper = styled.div`
+  width:80%;
   max-width: 500px;
   margin: 2rem auto;
   padding: 2rem;
@@ -8,6 +9,18 @@ export const BookingWrapper = styled.div`
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   background-color: #fff;
   text-align: center;
+
+  @media (max-width: 480px) {
+    /* Em telas super pequenas, estreita ainda mais para criar margem nas laterais */
+    width: 85%;
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    /* No desktop/tablet, fixa 500px */
+    width: 500px;
+    padding: 2rem;
+  }
 `
 
 export const FormGroup = styled.div`
@@ -69,6 +82,11 @@ export const Button = styled.button`
 
   &:hover {
     background-color: #218838;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem;
   }
 `
 export const SummaryContainer = styled.div`
