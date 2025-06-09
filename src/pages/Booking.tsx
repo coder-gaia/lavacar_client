@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { BookingWrapper, Button, DurationInfo, FormGroup, Input, Label, OptionDescription, Select } from "./BookingStyles"
+import { ADMButton, BookingWrapper, Button, DurationInfo, FormGroup, Input, Label, OptionDescription, Select } from "./BookingStyles"
 import { serviceDurations } from "../utils/services"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Booking = () => {
 
@@ -62,6 +62,7 @@ const Booking = () => {
       </FormGroup>
 
       <Button onClick={handleConfirm}>Confirmar Agendamento</Button>
+      <Link to="/register"><ADMButton>Admin</ADMButton></Link>
     </BookingWrapper>
   )
 }

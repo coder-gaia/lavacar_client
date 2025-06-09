@@ -89,6 +89,30 @@ export const Button = styled.button`
     padding: 0.65rem 1.25rem;
   }
 `
+
+export const ADMButton = styled.button`
+  width: 100%;
+  box-sizing: border-box;
+  margin-top:20px;
+  padding: 0.75rem 1.5rem;
+  background-color:#0c4f54;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #0a3336;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem;
+  }
+`
 export const SummaryContainer = styled.div`
   text-align: left;
   margin-bottom: 2rem;

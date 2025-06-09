@@ -11,10 +11,10 @@ const Registro = () => {
         <Input type="text" placeholder='Seu nome'/>
         <Input type="email" placeholder='Seu email'/>
         <Input type="password" placeholder='Sua senha' />
-        <Link to="/booking"><Button type='submit'>Registrar</Button></Link>
+        <Link to="/login"><Button type='submit'>Registrar</Button></Link>
       </FormContainer>
       <p>
-        Não tem conta? <Link to="/"><b>Login</b></Link>
+        Entre na sua conta <Link to="/login"><b>Login</b></Link>
       </p>
     </MainWrapper>
   )
