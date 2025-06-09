@@ -17,6 +17,7 @@ const Booking = () => {
 
   return (
     <BookingWrapper>
+      <h1>LavaCar Fast</h1>
       <h2>Agendamento de Serviço</h2>
 
       <FormGroup>
