@@ -63,7 +63,7 @@ const Booking = () => {
       </FormGroup>
 
       <Button onClick={handleConfirm}>Confirmar Agendamento</Button>
-      <Link to="/register"><ADMButton>Admin</ADMButton></Link>
+      <Link to="/login"><ADMButton>Admin</ADMButton></Link>
     </BookingWrapper>
   )
 }

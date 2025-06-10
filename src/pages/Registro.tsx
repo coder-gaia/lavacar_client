@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Button, FormContainer, Input, MainWrapper } from './HomeStyles'
+import { Button, FormContainer, Input, MainWrapper } from './AdmLoginPageStyles'
 
 
 const Registro = () => {
