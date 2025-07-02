@@ -1,7 +1,7 @@
 export const serviceDurations: Record<string, string> = {
-  interior: "20 min",
-  exterior: "15 min",
-  baixo:    "10 min",
-  completa: "40 min",
-  premium:  "50 min",
+  interior: "50 min",
+  exterior: "70 min",
+  inferior: "40 min",
+  completa: "75 min",
+  premium:  "85 min",
 };

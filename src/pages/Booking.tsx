@@ -35,18 +35,18 @@ const Booking = () => {
           <option value="">Selecione</option>
           <option value="interior">Limpeza Interior - R$50</option>
           <option value="exterior">Limpeza Exterior - R$50</option>
-          <option value="baixo">Lavagem Inferior - R$40</option>
-          <option value="completa">Completa - R$80</option>
-          <option value="premium">Premium - R$100</option>
+          <option value="inferior">Limpeza Inferior - R$40</option>
+          <option value="completa">Limpeza Completa - R$80</option>
+          <option value="premium">Limpeza Premium - R$100</option>
         </Select>
         {service && (
           <>
             <OptionDescription>
               {service === "interior" && "Apenas limpeza interna do veículo."}
               {service === "exterior" && "Apenas limpeza externa do veículo."}
-              {service === "baixo" && "Lavagem da parte inferior do carro."}
+              {service === "inferior" && "Limpeza da parte inferior do carro."}
               {service === "completa" && "Limpeza interna e externa."}
-              {service === "premium" && "Completa + lavagem inferior."}
+              {service === "premium" && "Completa + limpeza inferior."}
             </OptionDescription>
               <DurationInfo>
               Tempo estimado: {serviceDurations[service]}
