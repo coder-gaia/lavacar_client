@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button, FormContainer, Input, MainWrapper } from './AdmLoginPageStyles'
 import { useNavigate } from 'react-router-dom';
+import {loginAdmin} from '../api/auth'
 
 const AdmLoginPage = () => {
 
@@ -9,11 +10,13 @@ const AdmLoginPage = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-  if (email === 'admin@lavacar.com' && password === 'senha123') {
-    navigate('/admin-dashboard'); 
-  } else {
-    setError('Credenciais inválidas');
+  const handleLogin = async () => {
+  try {
+    const data = await loginAdmin({email, password});
+    localStorage.setItem("authToken", data.token)
+    navigate("/admin-dashboard")
+  } catch (err:any) {
+    setError(err.response?.data?.message || "Erro no login");
   }
 }
 

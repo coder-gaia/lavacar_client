@@ -12,7 +12,7 @@ const Success = () => {
   const { name } = location.state as LocationState;
 
   const handleNewBooking = () => {
-    navigate('/booking');
+    navigate('/');
   };
 
   return (

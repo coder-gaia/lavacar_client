@@ -1,31 +1,50 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   BookingWrapper,
   SummaryContainer,
   SummaryItem,
   Label,
   Button
-} from './BookingStyles';
-import { serviceDurations } from '../utils/services';
+} from "./BookingStyles";
+import { createBooking } from "../api/booking";
 
 interface LocationState {
   name: string;
-  service: string;
+  serviceId: string;
+  serviceName: string;
+  duration: number;
   dateTime: string;
+  observation?: string;
 }
 
-
 const ConfirmBooking = () => {
-
   const location = useLocation();
   const navigate = useNavigate();
-  const { name, service, dateTime } = location.state as LocationState;
+  const {
+    name,
+    serviceId,
+    serviceName,
+    duration,
+    dateTime,
+    observation
+  } = location.state as LocationState;
 
-  const handleFinish = () => {
-    navigate('/success', { state: { name } });
+  const handleFinish = async () => {
+    try {
+      await createBooking({
+        clientName: name,
+        serviceId,
+        dateTime,
+        observation,
+      });
+      navigate("/success", { state: { name } });
+    } catch (err) {
+      console.error("Erro ao agendar:", err);
+      alert("Erro ao agendar. Tente novamente.");
+    }
   };
 
-return (
+  return (
     <BookingWrapper>
       <h1>Confirmação de Agendamento</h1>
 
@@ -34,18 +53,23 @@ return (
           <Label>Nome:</Label> {name}
         </SummaryItem>
         <SummaryItem>
-          <Label>Serviço:</Label> {service} ({serviceDurations[service]})
+          <Label>Serviço:</Label> {serviceName} ({duration} min)
         </SummaryItem>
         <SummaryItem>
-          <Label>Data e Hora:</Label>{' '}
-          {new Date(dateTime).toLocaleString('pt-BR', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
+          <Label>Data e Hora:</Label>{" "}
+          {new Date(dateTime).toLocaleString("pt-BR", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
           })}
         </SummaryItem>
+        {observation && (
+          <SummaryItem>
+            <Label>Observação:</Label> {observation}
+          </SummaryItem>
+        )}
       </SummaryContainer>
 
       <Button onClick={handleFinish}>Finalizar</Button>
@@ -53,4 +77,4 @@ return (
   );
 };
 
-export default ConfirmBooking
+export default ConfirmBooking;
