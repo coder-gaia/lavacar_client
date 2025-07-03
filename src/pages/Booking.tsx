@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { ADMButton, BookingWrapper, Button, DurationInfo, FormGroup, Input, Label, OptionDescription, Select } from "./BookingStyles"
+import { ADMButton, BookingWrapper, Button, DurationInfo, FormGroup, Input, Label, ObservationInput, OptionDescription, Select } from "./BookingStyles"
 import { serviceDurations } from "../utils/services"
 import { Link, useNavigate } from "react-router-dom";
 
 const Booking = () => {
 
   const [name, setName] = useState('');
+  const [observation, setObservation] = useState('');
   const [service, setService] = useState('');
   const [dateTime, setDateTime] = useState('');
   const navigate = useNavigate();
@@ -53,6 +54,14 @@ const Booking = () => {
             </DurationInfo>
           </>
         )}
+      </FormGroup>
+      <FormGroup>
+        <Label>Observação</Label>
+          <ObservationInput 
+            placeholder="Insira uma observação, se achar necessário." 
+            value={observation} 
+            onChange={(e) => setObservation(e.target.value)}>
+          </ObservationInput>
       </FormGroup>
       <FormGroup>
         <Label>Data e Hora</Label>

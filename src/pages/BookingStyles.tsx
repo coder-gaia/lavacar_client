@@ -43,6 +43,16 @@ export const Input = styled.input`
   font-size: 1rem;
   margin-top: 0.25rem;
 `
+export const ObservationInput = styled.textarea`
+  resize:none;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+`
 
 export const Select = styled.select`
   width: 100%;
