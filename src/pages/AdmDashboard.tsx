@@ -36,6 +36,7 @@ const AdmDashboard = () => {
             <Th>Tipo de Limpeza</Th>
             <Th>Data</Th>
             <Th>Hora</Th>
+            <Th>Observação</Th>
             <Th>Ação</Th>
           </tr>
         </thead>
@@ -48,6 +49,7 @@ const AdmDashboard = () => {
                 <Td>{bk.service.name}</Td>
                 <Td>{data.toLocaleDateString("pt-BR")}</Td>
                 <Td>{data.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}</Td>
+                <Td>{bk.observation?.trim() || "Sem observação"}</Td>
                 <Td>
                   {bk.status === "pending" ? (
                     <CompleteButton onClick={() => handleComplete(bk._id)}>
