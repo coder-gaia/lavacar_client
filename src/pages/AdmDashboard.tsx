@@ -45,12 +45,12 @@ const AdmDashboard = () => {
             const data = new Date(bk.dateTime);
             return (
               <tr key={bk._id}>
-                <Td>{bk.clientName}</Td>
-                <Td>{bk.service.name}</Td>
-                <Td>{data.toLocaleDateString("pt-BR")}</Td>
-                <Td>{data.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}</Td>
-                <Td>{bk.observation?.trim() || "Sem observação"}</Td>
-                <Td>
+                <Td data-label="Cliente"><span>{bk.clientName}</span></Td>
+                <Td data-label="Tipo de Limpeza"><span>{bk.service.name}</span></Td>
+                <Td data-label="Data"><span>{data.toLocaleDateString("pt-BR")}</span></Td>
+                <Td data-label="Hora"><span>{data.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}</span></Td>
+                <Td data-label="Observação"><span>{bk.observation?.trim() || "Sem observação"}</span></Td>
+                <Td data-label="Ação">
                   {bk.status === "pending" ? (
                     <CompleteButton onClick={() => handleComplete(bk._id)}>
                       Concluir
