@@ -2,15 +2,20 @@ import styled from "styled-components";
 
 export const DashboardWrapper = styled.div`
   padding: 1rem;
-  max-width: 100%;
   margin: 0 auto;
+  max-width: 900px; 
 `;
 
+export const Title = styled.h1`
+  display: flex;
+  justify-content:center;
+`
+
 export const ToggleButton = styled.button`
-  display: block;
-  width: 100%;
+  display: block;       
+  width: 250px;        
   padding: 0.75rem;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;   
   background-color: #007bff;
   color: white;
   border: none;
@@ -23,6 +28,7 @@ export const ToggleButton = styled.button`
     background-color: #0056b3;
   }
 `;
+
 
 export const Table = styled.table`
   width: 100%;

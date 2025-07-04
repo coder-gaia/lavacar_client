@@ -6,7 +6,8 @@ import {
   Th,
   Td,
   CompleteButton,
-  ToggleButton
+  ToggleButton,
+  Title
 } from "./AdmDashboardStyles";
 
 const AdmDashboard = () => {
@@ -24,7 +25,7 @@ const AdmDashboard = () => {
 
   return (
     <DashboardWrapper>
-      <h1>Dashboard Admin</h1>
+      <Title>Dashboard Admin</Title>
       <ToggleButton onClick={() => setShowAll(a => !a)}>
         {showAll ? "Mostrar só pendentes" : "Mostrar todos"}
       </ToggleButton>
