@@ -48,7 +48,7 @@ export const Input = styled.input`
   border-radius: 8px;
   outline: none;
   background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.55);
   transition: all 0.2s ease;
   box-sizing:border-box;
 
@@ -71,7 +71,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   width: 100%;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
   font-weight: 600;
   background-color: #007bff;
@@ -80,8 +80,9 @@ export const Button = styled.button`
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.25s ease, transform 0.15s ease;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.9);
   box-sizing: border-box; 
+  margin-right:0.35rem;
 
   &:hover {
     background-color: #0056b3;
@@ -96,3 +97,9 @@ export const Button = styled.button`
     padding: 0.65rem 0.9rem;
   }
 `;
+
+
+export const BtnWrapper = styled.div`
+  display:flex;
+  justify-content:center;
+`

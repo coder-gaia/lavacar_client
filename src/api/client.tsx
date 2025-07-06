@@ -4,7 +4,7 @@ import type { InternalAxiosRequestConfig } from 'axios';
 console.log('API_URL (VITE):', import.meta.env.VITE_API_URL);
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL as string,
+  baseURL: import.meta.env.VITE_API_URL as string || "http://localhost:5000/api",
 });
 
 client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
