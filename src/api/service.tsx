@@ -5,6 +5,7 @@ export interface Service {
   name: string;
   price: number;
   duration: number;
+  description: string;
 }
 
 export const fetchServices = async (): Promise<Service[]> => {

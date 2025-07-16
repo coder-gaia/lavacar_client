@@ -26,3 +26,11 @@ export const createBooking = async (
   const response = await client.post<Booking>('/booking', payload);
   return response.data;
 };
+
+
+export const fetchAvailableSlots = async (date:string, serviceId:string): Promise<string[]> => {
+  const response = await client.get<string[]>('/booking/slots', {
+    params: {date, serviceId}
+  });
+  return response.data;
+}

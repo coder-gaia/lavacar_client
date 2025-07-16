@@ -13,14 +13,16 @@ import {
 } from "./BookingStyles";
 import { useNavigate, Link } from "react-router-dom";
 import { fetchServices, type Service } from "../api/service";
+import { fetchAvailableSlots } from "../api/booking";
 
 const Booking = () => {
   const [name, setName] = useState("");
   const [observation, setObservation] = useState("");
   const [service, setService] = useState("");
   const [services, setServices] = useState<Service[]>([]);
-  const [dateTime, setDateTime] = useState("");
-
+  const [date, setDate] = useState("");
+  const [availableSlots, setAvailableSlots] = useState<string[]>([]);
+  const [timeSlot, setTimeSlot] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,9 +31,20 @@ const Booking = () => {
       .catch(() => console.error("Erro ao buscar serviços"));
   }, []);
 
+  useEffect(() => {
+    if (service && date) {
+      fetchAvailableSlots(date, service)
+        .then(setAvailableSlots)
+        .catch(() => console.error("Erro ao buscar horários disponíveis"));
+    } else {
+      setAvailableSlots([]);
+    }
+    setTimeSlot("");
+  }, [service, date]);
+
   const handleConfirm = () => {
     const selectedService = services.find(s => s._id === service);
-    if (!name || !service || !dateTime || !selectedService) return;
+    if (!name || !service || !timeSlot || !selectedService) return;
 
     navigate("/confirm", {
       state: {
@@ -39,7 +52,7 @@ const Booking = () => {
         serviceId: selectedService._id,
         serviceName: selectedService.name,
         duration: selectedService.duration,
-        dateTime,
+        dateTime: timeSlot,
         observation,
       },
     });
@@ -74,7 +87,7 @@ const Booking = () => {
         {service && (
           <>
             <OptionDescription>
-              {services.find((s) => s._id === service)?.name}
+              {services.find((s) => s._id === service)?.description}
             </OptionDescription>
             <DurationInfo>
               Tempo estimado: {services.find((s) => s._id === service)?.duration} min
@@ -93,12 +106,41 @@ const Booking = () => {
       </FormGroup>
 
       <FormGroup>
-        <Label>Data e Hora</Label>
+        <Label>Data</Label>
         <Input
-          type="datetime-local"
-          value={dateTime}
-          onChange={(e) => setDateTime(e.target.value)}
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          disabled={!service}
         />
+      </FormGroup>
+
+      <FormGroup>
+        <Label>Horário</Label>
+        <Select
+          value={timeSlot}
+          onChange={(e) => setTimeSlot(e.target.value)}
+          disabled={!date || !availableSlots.length}
+        >
+          <option value="">Selecione um horário</option>
+          {availableSlots.map((slot) => {
+            const dt = new Date(slot);
+            return (
+              <option key={slot} value={slot}>
+                {dt.toLocaleTimeString("pt-BR", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </option>
+            );
+          })}
+        </Select>
+
+        {!availableSlots.length && date && (
+          <OptionDescription>
+            Nenhum horário disponível nesta data.
+          </OptionDescription>
+        )}
       </FormGroup>
 
       <Button onClick={handleConfirm}>Confirmar Agendamento</Button>
