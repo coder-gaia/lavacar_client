@@ -121,17 +121,14 @@ const Booking = () => {
               disabled={!date || !availableSlots.length}
             >
               <option value="">Selecione um horário</option>
-              {availableSlots.map((slot) => {
-                const dt = new Date(slot);
-                return (
-                  <option key={slot} value={slot}>
-                    {dt.toLocaleTimeString("pt-BR", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </option>
-                );
-              })}
+          {availableSlots.map((slot) => {
+          const time = slot.slice(11, 16);
+            return (
+            <option key={slot} value={slot}>
+              {time}
+            </option>
+            );
+          })}
             </Select>
 
             {!availableSlots.length && date && (
