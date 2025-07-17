@@ -13,7 +13,7 @@ export const BookingWrapper = styled.div`
   overflow-y: auto;
 
   @media (max-width: 480px) {
-    width: 90%;
+    width: 100%;
     padding: 1.5rem;
     max-height: 95vh;
   }
