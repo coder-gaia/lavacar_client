@@ -9,7 +9,10 @@ import {
   Label,
   ObservationInput,
   OptionDescription,
-  Select
+  Select,
+  Message,
+  FormLayout,
+  Column
 } from "./BookingStyles";
 import { useNavigate, Link } from "react-router-dom";
 import { fetchServices, type Service } from "../api/service";
@@ -61,90 +64,96 @@ const Booking = () => {
   return (
     <BookingWrapper>
       <h1>LavaCar Fast</h1>
-      <h2>Agendamento de Serviço</h2>
+      <Message>Agendamento de Serviço</Message>
 
-      <FormGroup>
-        <Label>Nome</Label>
-        <Input
-          type="text"
-          placeholder="Seu nome completo"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </FormGroup>
+      <FormLayout>
+        <Column>
+          <FormGroup>
+            <Label>Nome</Label>
+            <Input
+              type="text"
+              placeholder="Seu nome completo"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </FormGroup>
 
-      <FormGroup>
-        <Label>Tipo de Serviço</Label>
-        <Select value={service} onChange={(e) => setService(e.target.value)}>
-          <option value="">Selecione</option>
-          {services.map((s) => (
-            <option key={s._id} value={s._id}>
-              {s.name} - R${s.price}
-            </option>
-          ))}
-        </Select>
+          <FormGroup>
+            <Label>Tipo de Serviço</Label>
+            <Select value={service} onChange={(e) => setService(e.target.value)}>
+              <option value="">Selecione</option>
+              {services.map((s) => (
+                <option key={s._id} value={s._id}>
+                  {s.name} - R${s.price}
+                </option>
+              ))}
+            </Select>
 
-        {service && (
-          <>
-            <OptionDescription>
-              {services.find((s) => s._id === service)?.description}
-            </OptionDescription>
-            <DurationInfo>
-              Tempo estimado: {services.find((s) => s._id === service)?.duration} min
-            </DurationInfo>
-          </>
-        )}
-      </FormGroup>
+            {service && (
+              <>
+                <OptionDescription>
+                  {services.find((s) => s._id === service)?.description}
+                </OptionDescription>
+                <DurationInfo>
+                  Tempo estimado: {services.find((s) => s._id === service)?.duration} min
+                </DurationInfo>
+              </>
+            )}
+          </FormGroup>
+        </Column>
 
-      <FormGroup>
-        <Label>Observação</Label>
-        <ObservationInput
-          placeholder="Insira uma observação, se achar necessário."
-          value={observation}
-          onChange={(e) => setObservation(e.target.value)}
-        />
-      </FormGroup>
+        <Column>
+          <FormGroup>
+            <Label>Data</Label>
+            <Input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              disabled={!service}
+            />
+          </FormGroup>
 
-      <FormGroup>
-        <Label>Data</Label>
-        <Input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          disabled={!service}
-        />
-      </FormGroup>
+          <FormGroup>
+            <Label>Horário</Label>
+            <Select
+              value={timeSlot}
+              onChange={(e) => setTimeSlot(e.target.value)}
+              disabled={!date || !availableSlots.length}
+            >
+              <option value="">Selecione um horário</option>
+              {availableSlots.map((slot) => {
+                const dt = new Date(slot);
+                return (
+                  <option key={slot} value={slot}>
+                    {dt.toLocaleTimeString("pt-BR", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </option>
+                );
+              })}
+            </Select>
 
-      <FormGroup>
-        <Label>Horário</Label>
-        <Select
-          value={timeSlot}
-          onChange={(e) => setTimeSlot(e.target.value)}
-          disabled={!date || !availableSlots.length}
-        >
-          <option value="">Selecione um horário</option>
-          {availableSlots.map((slot) => {
-            const dt = new Date(slot);
-            return (
-              <option key={slot} value={slot}>
-                {dt.toLocaleTimeString("pt-BR", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </option>
-            );
-          })}
-        </Select>
+            {!availableSlots.length && date && (
+              <OptionDescription>
+                Nenhum horário disponível nesta data.
+              </OptionDescription>
+            )}
+          </FormGroup>
 
-        {!availableSlots.length && date && (
-          <OptionDescription>
-            Nenhum horário disponível nesta data.
-          </OptionDescription>
-        )}
-      </FormGroup>
+          <FormGroup>
+            <Label>Observação</Label>
+            <ObservationInput
+              placeholder="Insira uma observação, se achar necessário."
+              value={observation}
+              onChange={(e) => setObservation(e.target.value)}
+            />
+          </FormGroup>
+        </Column>
+      </FormLayout>
 
       <Button onClick={handleConfirm}>Confirmar Agendamento</Button>
-      <Link to="/login">
+      <Link to="/login" style={{ display: 'block', marginTop: '1rem' }}>
         <ADMButton>Admin</ADMButton>
       </Link>
     </BookingWrapper>

@@ -1,27 +1,53 @@
 import styled from 'styled-components'
 
 export const BookingWrapper = styled.div`
-  width:80%;
   max-width: 500px;
-  margin: 2rem auto;
+  margin: 1rem auto;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   background-color: #fff;
   text-align: center;
 
+  max-height: 90vh;
+  overflow-y: auto;
+
   @media (max-width: 480px) {
-    /* Em telas super pequenas, estreita ainda mais para criar margem nas laterais */
-    width: 85%;
+    width: 90%;
     padding: 1.5rem;
+    max-height: 95vh;
   }
 
-  @media (min-width: 768px) {
-    /* No desktop/tablet, fixa 500px */
-    width: 500px;
-    padding: 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
   }
-`
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+`;
+
+export const FormLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+`;
+
+export const Column = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 
 export const FormGroup = styled.div`
   margin-bottom: 1.5rem;
@@ -42,7 +68,13 @@ export const Input = styled.input`
   border-radius: 8px;
   font-size: 1rem;
   margin-top: 0.25rem;
-`
+
+  @media (max-width: 480px) {
+    padding: 0.65rem;
+    font-size: 0.95rem;
+  }
+`;
+
 export const ObservationInput = styled.textarea`
   resize:none;
   width: 100%;
