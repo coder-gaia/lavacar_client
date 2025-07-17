@@ -14,7 +14,7 @@ export const BookingWrapper = styled.div`
 
   @media (max-width: 480px) {
     width: 100%;
-    padding: 1.5rem;
+    padding: 2rem;
     max-height: 95vh;
   }
 
@@ -56,7 +56,7 @@ export const FormGroup = styled.div`
 
 export const Label = styled.label`
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   display: block;
 `
 
@@ -67,7 +67,6 @@ export const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  margin-top: 0.25rem;
 
   @media (max-width: 480px) {
     padding: 0.65rem;
@@ -83,7 +82,7 @@ export const ObservationInput = styled.textarea`
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  margin-top: 0.25rem;
+  // margin-top: 0.25rem;
 `
 
 export const Select = styled.select`
@@ -93,7 +92,6 @@ export const Select = styled.select`
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  margin-top: 0.25rem;
 `
 
 export const OptionDescription = styled.p`
@@ -103,9 +101,9 @@ export const OptionDescription = styled.p`
 `
 
 export const DurationInfo = styled.p`
-  margin-top: 0.25rem;
+  margin-bottom: -1rem;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: bolder;
   color: #333;
 `
 

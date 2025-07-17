@@ -3,8 +3,15 @@ import styled from "styled-components";
 export const DashboardWrapper = styled.div`
   padding: 1rem;
   margin: 0 auto;
-  max-width: 900px; 
+  width: 100%;
+  max-width: 900px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  padding-bottom: 3rem;
 `;
+
 
 export const Title = styled.h1`
   display: flex;
@@ -12,22 +19,25 @@ export const Title = styled.h1`
 `
 
 export const ToggleButton = styled.button`
-  display: block;       
-  width: 250px;        
+  width: 100%;
+  max-width: 250px;
   padding: 0.75rem;
-  margin: 0 auto 1rem;   
+  margin: 0 auto 2rem; /* 👈 aqui aumenta */
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
+  display: block;
   text-align: center;
 
   &:hover {
     background-color: #0056b3;
   }
 `;
+
 
 
 export const Table = styled.table`
@@ -37,15 +47,16 @@ export const Table = styled.table`
   font-size: 0.9rem;
 
   thead {
-    display: none; /* ocultar cabeçalho no mobile */
+    display: none;
   }
 
   tbody tr {
     display: block;
+    background-color: white;
     margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 0.5rem;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
 
   tbody tr td {
@@ -60,13 +71,15 @@ export const Table = styled.table`
 
     &::before {
       content: attr(data-label);
-      font-weight: bold;
+      font-weight: 600;
       flex: 1;
+      color: #555;
     }
 
     span {
       flex: 1;
       text-align: right;
+      color: #333;
     }
   }
 
@@ -77,7 +90,9 @@ export const Table = styled.table`
 
     tbody tr {
       display: table-row;
-      border: none;
+      background-color: transparent;
+      border-radius: 0;
+      box-shadow: none;
       padding: 0;
       margin: 0;
     }
@@ -98,6 +113,7 @@ export const Table = styled.table`
   }
 `;
 
+
 export const Th = styled.th`
   text-align: left;
   padding: 0.75rem;
@@ -109,12 +125,16 @@ export const Th = styled.th`
 export const Td = styled.td``;
 
 export const CompleteButton = styled.button`
-  padding: 6px 12px;
+  width: 100%;
+  max-width: 150px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 0.9rem;
   transition: 0.2s;
 
   &:hover {
